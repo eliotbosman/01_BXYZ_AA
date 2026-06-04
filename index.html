@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" data-grid="001">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grid 001 — gallery</title>
+  <link rel="stylesheet" href="../shared/forhandsvisning-tokens.css" />
+  <link rel="stylesheet" href="../shared/grid-ref-layout.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/interaktion.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+  <link rel="stylesheet" href="css/verk-index.css" />
+  <link rel="stylesheet" href="css/sidfot.css" />
+  <link rel="stylesheet" href="css/sidfot-panel.css" />
+  <link rel="stylesheet" href="css/bild-modal.css" />
+  <link rel="stylesheet" href="css/mobil-index.css" />
+  <link rel="stylesheet" href="css/grid-ref-dold.css" />
+</head>
+<body>
+  <main class="yta" id="innehall" aria-label="Work gallery">
+    <div class="sida-grid">
+      <a class="sidfot-lank sidfot-lank--namn" href="index.html">Anja Aurand</a>
+      <nav class="mobil-index" aria-label="Project index" hidden>
+        <span class="mobil-index__kol-bakgrund" aria-hidden="true"></span>
+        <button
+          type="button"
+          class="mobil-index-knapp"
+          data-atgard="mobil-index/vaxla"
+          aria-expanded="false"
+          aria-controls="mobil-index-lista"
+        >
+          Index
+        </button>
+        <ul id="mobil-index-lista" class="mobil-index__lista" role="list" hidden></ul>
+      </nav>
+      <div class="galleri-zon">
+        <div class="galleri-flode scroll-dold" aria-label="Image gallery"></div>
+      </div>
+
+      <nav class="verk-index" data-tillstand="oppnad" aria-label="Project index">
+        <button
+          type="button"
+          class="verk-index__rubrik"
+          data-atgard="verk-index/vaxla"
+          data-tillstand="oppnad"
+          aria-expanded="true"
+          aria-controls="verk-index-lista"
+        >
+          Index
+        </button>
+        <div class="verk-index__lankar">
+          <ul id="verk-index-lista" class="verk-index__lista" role="list"></ul>
+        </div>
+      </nav>
+      <section
+        id="sidfot-info"
+        class="sidfot-panel sidfot-panel--info"
+        data-tillstand="oppnad"
+        aria-label="Info"
+      >
+        <div class="sidfot-panel__inne">
+          <p class="sidfot-panel__stycke">
+            Anja Aurand is a French/Swedish graphic designer educated at
+            <em>ENSAAMA</em> (Paris) and the <em>Gerrit Rietveld Academie</em>
+            (Amsterdam). Her practice engages with printed matter, language,
+            performance, scale and collaborative practices — book-making,
+            large-scale campaigns, installations, event curation and printmaking.
+          </p>
+          <p class="sidfot-panel__stycke">Paris / Amsterdam</p>
+          <h2 class="sidfot-panel__rubrik">Collaborators</h2>
+          <ul class="sidfot-panel__lista" role="list">
+            <li>Ivo Blackwood</li>
+            <li>Maren Weertman</li>
+            <li>Velko Kalchev</li>
+            <li>Manu-Sophie Linder</li>
+            <li>Chloé Gourvennec</li>
+            <li>Malva Askerup · Jaehyun Kim</li>
+          </ul>
+          <h2 class="sidfot-panel__rubrik">Institutions</h2>
+          <ul class="sidfot-panel__lista" role="list">
+            <li>Stedelijk Museum, Amsterdam</li>
+            <li>Gerrit Rietveld Academie</li>
+            <li>MAC VAL, Vitry-sur-Seine</li>
+            <li>MABA, Nogent-sur-Marne</li>
+            <li>Maison Félix Salut, Amsterdam</li>
+          </ul>
+        </div>
+      </section>
+      <section
+        id="sidfot-kontakt"
+        class="sidfot-panel sidfot-panel--kontakt"
+        hidden
+        data-tillstand="stangd"
+        aria-label="Contact"
+      >
+        <div class="sidfot-panel__inne">
+          <p class="sidfot-panel__stycke">
+            <a class="sidfot-panel__lank" href="mailto:hello@anjaaurand.com">hello@anjaaurand.com</a>
+          </p>
+          <p class="sidfot-panel__stycke">Paris / Amsterdam</p>
+        </div>
+      </section>
+      <button
+        type="button"
+        class="sidfot-lank sidfot-lank--info"
+        data-atgard="sidfot/vaxla-info"
+        data-tillstand="oppnad"
+        aria-expanded="true"
+        aria-controls="sidfot-info"
+      >
+        Info
+      </button>
+      <button
+        type="button"
+        class="sidfot-lank sidfot-lank--kontakt"
+        data-atgard="sidfot/vaxla-kontakt"
+        aria-expanded="false"
+        aria-controls="sidfot-kontakt"
+      >
+        Contact
+      </button>
+    </div>
+  </main>
+
+  <dialog class="bild-modal" id="bild-modal" aria-label="Image preview" tabindex="-1">
+    <div class="bild-modal__yta">
+      <img class="bild-modal__bild" src="" alt="" />
+    </div>
+    <p class="bild-modal__index" aria-live="polite">
+      <span class="bild-modal__index-tal">1 / 1</span>
+    </p>
+  </dialog>
+
+  <script type="module" src="js/galleri-injekt.js"></script>
+
+  <aside class="grid-ref" aria-label="Grid 001 referens (001)">
+    <div class="grid-ref__ram">
+    <div class="grid-ref__rutnat grid-ref__rutnat--bred" role="presentation">
+      <span class="grid-ref__cell" data-kol="A" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="25"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="26"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="27"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="28"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="29"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="30"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="30"></span>
+      <span class="grid-ref__cell" data-kol="C" data-rad="30"></span>
+      <span class="grid-ref__cell" data-kol="D" data-rad="30"></span>
+      <span class="grid-ref__cell" data-kol="E" data-rad="30"></span>
+      <span class="grid-ref__cell" data-kol="F" data-rad="30"></span>
+    </div>
+    <div class="grid-ref__rutnat grid-ref__rutnat--mobil" role="presentation">
+      <span class="grid-ref__cell" data-kol="A" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="1"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="2"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="3"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="4"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="5"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="6"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="7"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="8"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="9"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="10"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="11"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="12"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="13"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="14"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="15"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="16"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="17"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="18"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="19"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="20"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="21"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="22"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="23"></span>
+      <span class="grid-ref__cell" data-kol="A" data-rad="24"></span>
+      <span class="grid-ref__cell" data-kol="B" data-rad="24"></span>
+    </div>
+    </div>
+  </aside>
+
+  <label class="grid-ref-styr" hidden>
+    <input type="checkbox" id="grid-ref-vis" />
+    grid 001
+  </label>
+</body>
+</html>

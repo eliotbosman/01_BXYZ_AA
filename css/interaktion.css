@@ -1,0 +1,16 @@
+
+@layer utilities {
+  [data-grid="001"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  [data-grid="001"] :is(a, button, dialog, img, input) {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+
+  [data-grid="001"] :is(a, button, dialog, img, input):focus,
+  [data-grid="001"] :is(a, button, dialog, img, input):focus-visible {
+    outline: none;
+  }
+}

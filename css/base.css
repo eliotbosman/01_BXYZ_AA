@@ -1,0 +1,45 @@
+
+@layer tokens {
+  [data-grid="001"] {
+    --grid: 001;
+    --color-foreground: #212121;
+    --leading-snug: 1.28;
+    --tracking-wide: 0.08em;
+    --grid-columns: 6;
+    --grid-columns-mobile: 2;
+    --grid-margin: 12.5px;
+    --grid-rows: 30;
+    --rh: calc(100dvh / var(--grid-rows));
+    --grid-col-gap: 26px;
+    --grid-row-gap: 6.75px;
+    --axel-bredd: 2.25rem;
+    --grid-ref-kolumner: 6;
+
+    --grid-innehall-h: calc(100dvh - 2 * var(--grid-margin));
+    --rh-rad: calc(
+      (var(--grid-innehall-h) - (var(--grid-rows) - 1) * var(--grid-row-gap))
+      / var(--grid-rows)
+    );
+    --linje-margin: var(--forhandsvisning-yttre);
+    --linje-kol: var(--forhandsvisning-kol);
+    --linje-rad: var(--forhandsvisning-rad);
+    --linje-cell: var(--forhandsvisning-cell);
+  }
+
+  @media (max-width: 768px) {
+    [data-grid="001"] {
+      --grid-cell-gutter: var(--grid-margin);
+      --grid-columns: 2;
+      --grid-margin: 6px;
+      --grid-rows: 24;
+      --grid-col-gap: 12px;
+      --grid-row-gap: 6px;
+      --grid-ref-kolumner: 2;
+      --grid-innehall-h: calc(100dvh - 2 * var(--grid-margin));
+      --rh-rad: calc(
+        (var(--grid-innehall-h) - (var(--grid-rows) - 1) * var(--grid-row-gap))
+        / var(--grid-rows)
+      );
+    }
+  }
+}
