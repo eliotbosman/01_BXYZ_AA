@@ -1,0 +1,11 @@
+
+@layer layout {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    column-gap: var(--grid-col-gap);
+    row-gap: var(--grid-row-gap);
+    padding-block: var(--grid-margin);
+    padding-inline: var(--grid-margin);
+  }
+}
