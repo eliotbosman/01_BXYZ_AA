@@ -1,3 +1,4 @@
+import { rensaAktivProsjekt, synkaGalleriZon } from "./mobil-index.js";
 
 const desktop = window.matchMedia("(min-width: 769px)");
 
@@ -28,6 +29,7 @@ function sattVerkIndexOppnad(oppnad) {
     knapp.dataset.tillstand = "oppnad";
     knapp.setAttribute("aria-expanded", "true");
     lankar.hidden = false;
+    synkaGalleriZon();
     return;
   }
 
@@ -35,6 +37,8 @@ function sattVerkIndexOppnad(oppnad) {
   knapp.dataset.tillstand = "";
   knapp.setAttribute("aria-expanded", "false");
   lankar.hidden = true;
+  rensaAktivProsjekt();
+  synkaGalleriZon();
 }
 
 function vaxlaVerkIndex(_mal, handelse) {
@@ -56,4 +60,5 @@ export const verkIndexAtgarder = {
 export function kopplaVerkIndex() {
   if (arDesktop()) sattVerkIndexOppnad(false);
   desktop.addEventListener("change", synkaVerkIndexLayout);
+  synkaGalleriZon();
 }

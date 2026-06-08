@@ -37,6 +37,10 @@
     overflow: visible;
   }
 
+  .galleri-zon[hidden] {
+    display: none;
+  }
+
   .galleri-zon {
     grid-column: 2 / 6;
     grid-row: 1 / -1;
@@ -86,6 +90,9 @@
     display: block;
     box-sizing: border-box;
     text-align: center;
+    width: 100%;
+    max-width: 50%;
+    margin-inline: auto;
   }
 
   .galleri-verk-inledning__rubrik,
@@ -139,9 +146,16 @@
       min-width: 0;
     }
 
+    .galleri-verk-inledning {
+      max-width: none;
+      margin-inline: 0;
+    }
+
     .galleri-verk-inledning--kol-cd {
-      grid-column: 1 / -1;
+      grid-column: 2 / 4;
       text-align: center;
+      justify-self: stretch;
+      width: 100%;
     }
 
     .galleri-bild-rad {

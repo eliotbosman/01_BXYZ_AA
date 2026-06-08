@@ -23,6 +23,41 @@ function hamtaFlode() {
   return document.querySelector(".galleri-flode");
 }
 
+function hamtaGalleriZon() {
+  return document.querySelector(".galleri-zon");
+}
+
+function arVerkIndexOppnad() {
+  const nav = document.querySelector(".verk-index");
+  return nav?.dataset.tillstand === "oppnad";
+}
+
+function arMobilIndexOppnad() {
+  const nav = hamtaNav();
+  return nav?.dataset.tillstand === "oppnad";
+}
+
+function arIndexOppnad() {
+  return arMobil() ? arMobilIndexOppnad() : arVerkIndexOppnad();
+}
+
+export function rensaAktivProsjekt() {
+  document.body.dataset.aktivProsjekt = "";
+  synkaProsjektSynlighet("");
+  document.querySelectorAll(".verk-lank").forEach((lank) => {
+    lank.removeAttribute("aria-current");
+  });
+  markeraIndexVal("");
+}
+
+export function synkaGalleriZon() {
+  const zon = hamtaGalleriZon();
+  if (!zon) return;
+  const aktivId = document.body.dataset.aktivProsjekt || "";
+  const synlig = arIndexOppnad() || !!aktivId;
+  zon.hidden = !synlig;
+}
+
 function synkaProsjektSynlighet(aktivId) {
   document.querySelectorAll(".galleri-prosjekt").forEach((sektion) => {
     if (!aktivId) {
@@ -53,6 +88,7 @@ export function valjProsjekt(id) {
   });
   const flode = hamtaFlode();
   if (flode) flode.scrollTop = 0;
+  synkaGalleriZon();
 }
 
 export function valjMobilProsjekt(id) {
@@ -77,8 +113,13 @@ function sattIndexOppnad(oppnad) {
   lista.setAttribute("hidden", "");
 }
 
-function stangIndex() {
+function stangIndex(opts = {}) {
+  const { behallProsjekt = false } = opts;
   sattIndexOppnad(false);
+  if (!behallProsjekt) {
+    rensaAktivProsjekt();
+  }
+  synkaGalleriZon();
 }
 
 function vaxlaIndex(_mal, handelse) {
@@ -86,7 +127,13 @@ function vaxlaIndex(_mal, handelse) {
   handelse.preventDefault();
   const nav = hamtaNav();
   if (!nav) return;
-  sattIndexOppnad(nav.dataset.tillstand !== "oppnad");
+  const oppnas = nav.dataset.tillstand !== "oppnad";
+  if (oppnas) {
+    sattIndexOppnad(true);
+    synkaGalleriZon();
+    return;
+  }
+  stangIndex();
 }
 
 function valjFranIndex(_mal, handelse) {
@@ -95,7 +142,7 @@ function valjFranIndex(_mal, handelse) {
   const knapp = handelse.target.closest(".mobil-index__val");
   if (!knapp) return;
   valjMobilProsjekt(knapp.dataset.prosjekt);
-  stangIndex();
+  stangIndex({ behallProsjekt: true });
 }
 
 function hanteraUtanforIndex(handelse) {
@@ -161,4 +208,5 @@ export function kopplaMobilIndex() {
   document.addEventListener("pointerup", hanteraUtanforIndex);
   mobil.addEventListener("change", synkaMobilLayout);
   synkaMobilLayout();
+  synkaGalleriZon();
 }
