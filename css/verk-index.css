@@ -1,7 +1,6 @@
 
 @layer tokens {
   [data-grid="001"] {
-    --font-display--family: "Mrs Eaves Lining OT", Georgia, "Times New Roman", serif;
     --verk-lank-rader: 0.5;
     --verk-lank-storlek: calc(var(--rh-rad) * var(--verk-lank-rader));
     --verk-lank-rad-hojd: var(--sidfot-panel-typ-rad, calc(var(--rh-rad) * var(--verk-lank-rader)));
@@ -63,10 +62,8 @@
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
-    font-family: var(--font-display--family);
-    font-size: var(--verk-lank-storlek);
-    font-weight: 400;
-    line-height: var(--verk-lank-rad-hojd);
+    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
+      var(--font-display--family);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     text-align: end;
@@ -97,10 +94,8 @@
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
-    font-family: var(--font-display--family);
-    font-size: var(--verk-lank-storlek);
-    font-weight: 400;
-    line-height: var(--verk-lank-rad-hojd);
+    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
+      var(--font-display--family);
     letter-spacing: var(--tracking-wide);
     text-align: end;
     text-decoration: none;

@@ -7,10 +7,8 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    font-family: var(--font-display--family);
-    font-size: var(--verk-lank-storlek);
-    font-weight: 400;
-    line-height: var(--verk-lank-rad-hojd);
+    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
+      var(--font-display--family);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     text-decoration: none;
@@ -22,8 +20,13 @@
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     justify-self: start;
-    position: sticky;
-    top: var(--grid-margin);
+  }
+
+  @media (min-width: 769px) {
+    .sidfot-lank--namn {
+      position: sticky;
+      top: var(--grid-margin);
+    }
   }
 
   .sidfot-lank--info {
@@ -41,8 +44,9 @@
 
   @media (max-width: 768px) {
     .sidfot-lank {
-      font-size: var(--mobil-krom-typ-storlek, var(--verk-lank-storlek));
-      line-height: var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd));
+      font: 400 var(--mobil-krom-typ-storlek, var(--verk-lank-storlek)) /
+        var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd))
+        var(--font-display--family);
     }
 
     .sidfot-lank--info {

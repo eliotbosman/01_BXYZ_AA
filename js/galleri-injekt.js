@@ -175,7 +175,12 @@ function byggIndex(mal) {
   );
 }
 
+function laddaDisplayTypsnitt() {
+  document.fonts.load('400 1em "Mrs Eaves Lining OT"');
+}
+
 function init() {
+  laddaDisplayTypsnitt();
   const flode = document.querySelector(".galleri-flode");
   const lista = document.querySelector(".verk-index__lista");
   if (!flode || !lista) return;
