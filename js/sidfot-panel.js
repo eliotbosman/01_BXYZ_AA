@@ -1,5 +1,6 @@
 
 import { fadeIn, fadeOut } from "./innehall-fade.js";
+import { synkaGalleriZon } from "./mobil-index.js";
 
 const PANEL = {
   info: {
@@ -32,6 +33,7 @@ function stang(nyckel) {
   });
   fadeOut(el).then(() => {
     el.dataset.tillstand = "stangd";
+    synkaGalleriZon();
   });
 }
 
@@ -44,6 +46,7 @@ function oppna(nyckel) {
     btn.dataset.tillstand = "oppnad";
     btn.setAttribute("aria-expanded", "true");
   });
+  synkaGalleriZon();
   fadeIn(el);
 }
 

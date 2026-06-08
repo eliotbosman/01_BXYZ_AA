@@ -42,6 +42,16 @@ function arIndexOppnad() {
   return arMobil() ? arMobilIndexOppnad() : arVerkIndexOppnad();
 }
 
+function arMobilOverlayOppen() {
+  if (!arMobil()) return false;
+  const info = document.getElementById("sidfot-info");
+  const indexOverlay = hamtaOverlay();
+  const infoOppen = info?.dataset.tillstand === "oppnad";
+  const indexOppen =
+    arMobilIndexOppnad() || indexOverlay?.dataset.tillstand === "oppnad";
+  return infoOppen || indexOppen;
+}
+
 export function rensaAktivProsjekt() {
   document.body.dataset.aktivProsjekt = "";
   synkaProsjektSynlighet("");
@@ -57,7 +67,9 @@ export function synkaGalleriZon() {
   const zon = hamtaGalleriZon();
   if (!zon) return;
   const aktivId = document.body.dataset.aktivProsjekt || "";
-  const synlig = arIndexOppnad() || !!aktivId;
+  const synlig = arMobil()
+    ? !!aktivId && !arMobilOverlayOppen()
+    : arVerkIndexOppnad() || !!aktivId;
   if (synlig === galleriSynlig) return;
   galleriSynlig = synlig;
   if (synlig) fadeIn(zon);
@@ -111,6 +123,7 @@ function sattIndexOppnad(oppnad) {
     nav.dataset.tillstand = "oppnad";
     knapp.setAttribute("aria-expanded", "true");
     overlay.dataset.tillstand = "oppnad";
+    synkaGalleriZon();
     fadeIn(overlay);
     return;
   }
@@ -139,8 +152,8 @@ function vaxlaIndex(_mal, handelse) {
   const oppnas = nav.dataset.tillstand !== "oppnad";
   if (oppnas) {
     document.dispatchEvent(new CustomEvent("sidfot-info/stang"));
-    sattIndexOppnad(true);
     synkaGalleriZon();
+    sattIndexOppnad(true);
     return;
   }
   stangIndex();
