@@ -12,26 +12,45 @@ const atgarder = {
   ...sidfotAtgarder,
 };
 
+function arMobil() {
+  return window.matchMedia("(max-width: 768px)").matches;
+}
+
+function skrollaTillMal(mal) {
+  const flode = document.querySelector(".galleri-flode");
+  if (!flode || !mal) return;
+
+  const korScroll = () => {
+    const rorelse = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth";
+    const flodeYta = flode.getBoundingClientRect();
+    const malYta = mal.getBoundingClientRect();
+    const topp = flode.scrollTop + (malYta.top - flodeYta.top);
+    flode.scrollTo({ top: topp, behavior: rorelse });
+  };
+
+  requestAnimationFrame(() => requestAnimationFrame(korScroll));
+}
+
 function scrollaTillProjekt(mal, handelse) {
   handelse.preventDefault();
   const triggare = handelse.target.closest("[data-prosjekt]");
   const prosjektId = triggare?.dataset.prosjekt;
   if (!prosjektId) return;
 
+  const sektion =
+    mal ?? document.getElementById(`projekt-${prosjektId}`) ?? null;
+
   valjProsjekt(prosjektId);
 
-  const flode = document.querySelector(".galleri-flode");
-  if (!flode || !mal) return;
+  if (arMobil()) {
+    document.dispatchEvent(
+      new CustomEvent("mobil-index/stang", { detail: { behallProsjekt: true } })
+    );
+  }
 
-  const rorelse = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? "auto"
-    : "smooth";
-
-  const flodeYta = flode.getBoundingClientRect();
-  const malYta = mal.getBoundingClientRect();
-  const topp = flode.scrollTop + (malYta.top - flodeYta.top);
-
-  flode.scrollTo({ top: topp, behavior: rorelse });
+  skrollaTillMal(sektion);
 }
 
 function hanteraAtgarder(handelse) {

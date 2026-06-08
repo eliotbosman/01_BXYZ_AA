@@ -104,8 +104,6 @@ export function valjProsjekt(id) {
       lank.dataset.prosjekt === id ? "true" : "false"
     );
   });
-  const flode = hamtaFlode();
-  if (flode) flode.scrollTop = 0;
   synkaGalleriZon();
 }
 
@@ -159,19 +157,16 @@ function vaxlaIndex(_mal, handelse) {
   stangIndex();
 }
 
-function valjFranIndex(_mal, handelse) {
-  if (!arMobil()) return;
-  handelse.preventDefault();
-  const knapp = handelse.target.closest(".mobil-index__val");
-  if (!knapp) return;
-  valjMobilProsjekt(knapp.dataset.prosjekt);
-  stangIndex({ behallProsjekt: true });
-}
-
 function hanteraUtanforIndex(handelse) {
   const nav = hamtaNav();
   if (!arMobil() || !nav || nav.dataset.tillstand !== "oppnad") return;
-  if (handelse.target.closest(".mobil-index, .mobil-index-knapp")) return;
+  if (
+    handelse.target.closest(
+      ".mobil-index, .mobil-index-knapp, .mobil-index__val, #mobil-index-overlay"
+    )
+  ) {
+    return;
+  }
   stangIndex();
 }
 
@@ -200,7 +195,7 @@ export function byggMobilIndex(lista) {
       const knapp = document.createElement("button");
       knapp.type = "button";
       knapp.className = "mobil-index__val";
-      knapp.dataset.atgard = "mobil-index/valj";
+      knapp.dataset.atgard = "prosjekt/scrolla";
       knapp.dataset.prosjekt = prosjekt.id;
       knapp.textContent = prosjekt.titel;
       li.append(knapp);
@@ -211,11 +206,10 @@ export function byggMobilIndex(lista) {
 
 export const mobilIndexAtgarder = {
   "mobil-index/vaxla": vaxlaIndex,
-  "mobil-index/valj": valjFranIndex,
 };
 
 export function kopplaMobilIndex() {
-  document.addEventListener("pointerup", hanteraUtanforIndex);
+  document.addEventListener("click", hanteraUtanforIndex);
   document.addEventListener("mobil-index/stang", (handelse) => {
     stangIndex({
       behallProsjekt: handelse.detail?.behallProsjekt ?? false,
