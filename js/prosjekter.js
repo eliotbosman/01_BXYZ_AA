@@ -112,13 +112,15 @@ export const prosjekter = [
     bilder: [
       {
         sokvag: "karaoke-1.jpg",
-        alt: "Deep Spring Karaoke Bar at Maison Félix Salut.",
+        alt: "Deep Spring Karaoke Bar flyer, front.",
         bredd: "full",
+        grupp: "flyer",
       },
       {
         sokvag: "karaoke-2.jpg",
-        alt: "Karaoke performance at Deep Spring Karaoke.",
+        alt: "Deep Spring Karaoke Bar flyer, back.",
         bredd: "full",
+        grupp: "flyer",
       },
       {
         sokvag: "karaoke-3.jpg",

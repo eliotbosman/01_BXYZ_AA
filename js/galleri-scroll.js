@@ -1,6 +1,6 @@
 
 import { bildAtgarder } from "./bild-modal.js";
-import { mobilIndexAtgarder } from "./mobil-index.js";
+import { mobilIndexAtgarder, valjProsjekt } from "./mobil-index.js";
 import { sidfotAtgarder } from "./sidfot-panel.js";
 import { verkIndexAtgarder } from "./verk-index-panel.js";
 
@@ -14,6 +14,12 @@ const atgarder = {
 
 function scrollaTillProjekt(mal, handelse) {
   handelse.preventDefault();
+  const triggare = handelse.target.closest("[data-prosjekt]");
+  const prosjektId = triggare?.dataset.prosjekt;
+  if (!prosjektId) return;
+
+  valjProsjekt(prosjektId);
+
   const flode = document.querySelector(".galleri-flode");
   if (!flode || !mal) return;
 
@@ -26,12 +32,6 @@ function scrollaTillProjekt(mal, handelse) {
   const topp = flode.scrollTop + (malYta.top - flodeYta.top);
 
   flode.scrollTo({ top: topp, behavior: rorelse });
-
-  document.querySelectorAll(".verk-lank").forEach((lank) => {
-    lank.removeAttribute("aria-current");
-  });
-  const triggare = handelse.target.closest(".verk-lank");
-  if (triggare) triggare.setAttribute("aria-current", "true");
 }
 
 function hanteraAtgarder(handelse) {

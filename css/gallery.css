@@ -83,8 +83,9 @@
   }
 
   .galleri-verk-inledning {
-    display: none;
+    display: block;
     box-sizing: border-box;
+    text-align: center;
   }
 
   .galleri-verk-inledning__rubrik,
@@ -105,8 +106,9 @@
   }
 
   .galleri-verk-inledning__brod {
-    text-align: justify;
-    hyphens: auto;
+    text-align: center;
+    text-align-last: center;
+    hyphens: none;
   }
 
   @media (min-width: 769px) {
@@ -134,35 +136,33 @@
     }
 
     .galleri-verk-inledning {
-      display: block;
       min-width: 0;
     }
 
-    .galleri-verk-inledning--kol-b {
-      grid-column: 1;
-      text-align: start;
-    }
-
-    .galleri-verk-inledning--kol-b .galleri-verk-inledning__brod {
-      text-align-last: start;
-    }
-
     .galleri-verk-inledning--kol-cd {
-      grid-column: 2 / 4;
+      grid-column: 1 / -1;
       text-align: center;
     }
 
-    .galleri-verk-inledning--kol-cd .galleri-verk-inledning__brod {
-      text-align-last: center;
+    .galleri-bild-rad {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--grid-col-gap);
+      row-gap: var(--galleri-mellanrum);
+      align-items: start;
     }
 
-    .galleri-verk-inledning--kol-e {
-      grid-column: 4;
-      text-align: end;
+    .galleri-bild-rad .galleri-bild {
+      grid-column: auto;
+      width: 100%;
     }
 
-    .galleri-verk-inledning--kol-e .galleri-verk-inledning__brod {
-      text-align-last: end;
+    .galleri-bild-rad .galleri-bild--lane-full,
+    .galleri-bild-rad .galleri-bild--portratt-inline,
+    .galleri-bild-rad .galleri-bild--portratt-span-2 {
+      grid-column: auto;
+      justify-self: stretch;
     }
   }
 
@@ -184,6 +184,14 @@
   }
 
   @media (max-width: 768px) {
+    .galleri-bild-rad {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--grid-col-gap);
+      row-gap: var(--galleri-mellanrum);
+      width: 100%;
+    }
+
     .galleri-flode {
       padding-block-start: 0;
       padding-block-end: var(--galleri-mellanrum);

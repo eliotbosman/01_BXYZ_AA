@@ -22,7 +22,15 @@
 <body>
   <main class="yta" id="innehall" aria-label="Work gallery">
     <div class="sida-grid">
-      <a class="sidfot-lank sidfot-lank--namn" href="index.html">Anja Aurand</a>
+      <button
+        type="button"
+        class="sidfot-lank sidfot-lank--namn"
+        data-atgard="sidfot/vaxla-info"
+        aria-expanded="false"
+        aria-controls="sidfot-info"
+      >
+        Anja Aurand
+      </button>
       <nav class="mobil-index" aria-label="Project index" hidden>
         <span class="mobil-index__kol-bakgrund" aria-hidden="true"></span>
         <button
@@ -40,25 +48,25 @@
         <div class="galleri-flode scroll-dold" aria-label="Image gallery"></div>
       </div>
 
-      <nav class="verk-index" data-tillstand="oppnad" aria-label="Project index">
+      <nav class="verk-index" data-tillstand="stangd" aria-label="Project index">
         <button
           type="button"
           class="verk-index__rubrik"
           data-atgard="verk-index/vaxla"
-          data-tillstand="oppnad"
-          aria-expanded="true"
+          aria-expanded="false"
           aria-controls="verk-index-lista"
         >
           Index
         </button>
-        <div class="verk-index__lankar">
+        <div class="verk-index__lankar" hidden>
           <ul id="verk-index-lista" class="verk-index__lista" role="list"></ul>
         </div>
       </nav>
       <section
         id="sidfot-info"
         class="sidfot-panel sidfot-panel--info"
-        data-tillstand="oppnad"
+        hidden
+        data-tillstand="stangd"
         aria-label="Info"
       >
         <div class="sidfot-panel__inne">
@@ -107,8 +115,8 @@
         type="button"
         class="sidfot-lank sidfot-lank--info"
         data-atgard="sidfot/vaxla-info"
-        data-tillstand="oppnad"
-        aria-expanded="true"
+        hidden
+        aria-expanded="false"
         aria-controls="sidfot-info"
       >
         Info

@@ -40,7 +40,8 @@
     align-self: center;
   }
 
-  .sidfot-lank:hover {
+  .sidfot-lank:hover,
+  .sidfot-lank[data-tillstand="oppnad"] {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }

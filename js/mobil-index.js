@@ -25,11 +25,11 @@ function hamtaFlode() {
 
 function synkaProsjektSynlighet(aktivId) {
   document.querySelectorAll(".galleri-prosjekt").forEach((sektion) => {
-    if (arMobil()) {
-      sektion.hidden = sektion.dataset.prosjekt !== aktivId;
+    if (!aktivId) {
+      sektion.hidden = true;
       return;
     }
-    sektion.hidden = false;
+    sektion.hidden = sektion.dataset.prosjekt !== aktivId;
   });
 }
 
@@ -40,13 +40,23 @@ function markeraIndexVal(aktivId) {
   });
 }
 
-export function valjMobilProsjekt(id) {
+export function valjProsjekt(id) {
   if (!id) return;
   document.body.dataset.aktivProsjekt = id;
   synkaProsjektSynlighet(id);
   markeraIndexVal(id);
+  document.querySelectorAll(".verk-lank").forEach((lank) => {
+    lank.setAttribute(
+      "aria-current",
+      lank.dataset.prosjekt === id ? "true" : "false"
+    );
+  });
   const flode = hamtaFlode();
   if (flode) flode.scrollTop = 0;
+}
+
+export function valjMobilProsjekt(id) {
+  valjProsjekt(id);
 }
 
 function sattIndexOppnad(oppnad) {
@@ -97,11 +107,12 @@ function hanteraUtanforIndex(handelse) {
 
 function synkaMobilLayout() {
   const nav = hamtaNav();
-  const aktivId = document.body.dataset.aktivProsjekt || prosjekter[0]?.id || "01";
+  const aktivId = document.body.dataset.aktivProsjekt || "";
 
   if (arMobil()) {
     if (nav) nav.hidden = false;
-    valjMobilProsjekt(aktivId);
+    synkaProsjektSynlighet(aktivId);
+    if (aktivId) markeraIndexVal(aktivId);
     stangIndex();
     return;
   }
@@ -147,9 +158,6 @@ export const mobilIndexAtgarder = {
 };
 
 export function kopplaMobilIndex() {
-  document.body.dataset.aktivProsjekt =
-    document.body.dataset.aktivProsjekt || prosjekter[0]?.id || "01";
-
   document.addEventListener("pointerup", hanteraUtanforIndex);
   mobil.addEventListener("change", synkaMobilLayout);
   synkaMobilLayout();

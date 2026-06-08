@@ -47,7 +47,6 @@ function vaxlaVerkIndex(_mal, handelse) {
 
 function synkaVerkIndexLayout() {
   if (!arDesktop()) return;
-  sattVerkIndexOppnad(true);
 }
 
 export const verkIndexAtgarder = {
@@ -55,6 +54,6 @@ export const verkIndexAtgarder = {
 };
 
 export function kopplaVerkIndex() {
-  if (arDesktop()) sattVerkIndexOppnad(true);
+  if (arDesktop()) sattVerkIndexOppnad(false);
   desktop.addEventListener("change", synkaVerkIndexLayout);
 }

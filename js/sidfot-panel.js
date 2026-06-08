@@ -1,7 +1,7 @@
 
 const PANEL = {
   info: {
-    knappSel: ".sidfot-lank--info",
+    knappSel: ".sidfot-lank--info, .sidfot-lank--namn",
     panelSel: "#sidfot-info",
     atgard: "sidfot/vaxla-info",
   },
@@ -16,8 +16,8 @@ function panel(nyckel) {
   return document.querySelector(PANEL[nyckel].panelSel);
 }
 
-function knapp(nyckel) {
-  return document.querySelector(PANEL[nyckel].knappSel);
+function knappar(nyckel) {
+  return document.querySelectorAll(PANEL[nyckel].knappSel);
 }
 
 function arOppnad(nyckel) {
@@ -27,22 +27,26 @@ function arOppnad(nyckel) {
 
 function stang(nyckel) {
   const el = panel(nyckel);
-  const btn = knapp(nyckel);
-  if (!el || !btn) return;
+  const knappLista = knappar(nyckel);
+  if (!el || knappLista.length === 0) return;
   el.hidden = true;
   el.dataset.tillstand = "stangd";
-  btn.dataset.tillstand = "";
-  btn.setAttribute("aria-expanded", "false");
+  knappLista.forEach((btn) => {
+    btn.dataset.tillstand = "";
+    btn.setAttribute("aria-expanded", "false");
+  });
 }
 
 function oppna(nyckel) {
   const el = panel(nyckel);
-  const btn = knapp(nyckel);
-  if (!el || !btn) return;
+  const knappLista = knappar(nyckel);
+  if (!el || knappLista.length === 0) return;
   el.hidden = false;
   el.dataset.tillstand = "oppnad";
-  btn.dataset.tillstand = "oppnad";
-  btn.setAttribute("aria-expanded", "true");
+  knappLista.forEach((btn) => {
+    btn.dataset.tillstand = "oppnad";
+    btn.setAttribute("aria-expanded", "true");
+  });
 }
 
 function vaxla(nyckel) {
@@ -66,16 +70,18 @@ function vaxlaKontakt(_mal, handelse) {
 function vidKlickUtanfor(handelse) {
   if (
     handelse.target.closest(
-      ".sidfot-panel, .sidfot-lank--info, .sidfot-lank--kontakt, .verk-index"
+      ".sidfot-panel, .sidfot-lank--namn, .sidfot-lank--info, .sidfot-lank--kontakt, .verk-index, .mobil-index"
     )
   ) {
     return;
   }
+  stang("info");
   stang("kontakt");
 }
 
 function vidTangent(handelse) {
   if (handelse.key !== "Escape") return;
+  stang("info");
   stang("kontakt");
 }
 
@@ -85,7 +91,6 @@ export const sidfotAtgarder = {
 };
 
 export function kopplaSidfotPanel() {
-  oppna("info");
   document.addEventListener("keydown", vidTangent);
   document.addEventListener("click", vidKlickUtanfor);
 }

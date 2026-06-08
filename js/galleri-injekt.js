@@ -96,18 +96,10 @@ function skapaBild(bilde) {
 const LOREM_BROD =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
-const INLEDNING_KOLUMNER = ["kol-b", "kol-cd", "kol-e"];
-
-function slumpaInledningKolumn() {
-  const i = Math.floor(Math.random() * INLEDNING_KOLUMNER.length);
-  return INLEDNING_KOLUMNER[i];
-}
-
 function skapaVerkInledning(prosjekt) {
-  const kolumn = slumpaInledningKolumn();
   const block = document.createElement("div");
-  block.className = `galleri-verk-inledning galleri-verk-inledning--${kolumn}`;
-  block.dataset.kolumn = kolumn;
+  block.className = "galleri-verk-inledning galleri-verk-inledning--kol-cd";
+  block.dataset.kolumn = "kol-cd";
 
   const rubrik = document.createElement("h2");
   rubrik.className = "galleri-verk-inledning__rubrik";
@@ -121,16 +113,40 @@ function skapaVerkInledning(prosjekt) {
   return block;
 }
 
+function skapaBildRad(bilder) {
+  const rad = document.createElement("div");
+  rad.className = "galleri-bild-rad";
+  for (const bilde of bilder) {
+    rad.append(skapaBild(bilde));
+  }
+  return rad;
+}
+
 function skapaProsjekt(prosjekt) {
   const sektion = document.createElement("section");
   sektion.id = `projekt-${prosjekt.id}`;
   sektion.className = "galleri-prosjekt";
   sektion.dataset.prosjekt = prosjekt.id;
   sektion.setAttribute("aria-label", prosjekt.titel);
+  sektion.hidden = true;
 
   sektion.append(skapaVerkInledning(prosjekt));
-  for (const bilde of prosjekt.bilder) {
+
+  let i = 0;
+  while (i < prosjekt.bilder.length) {
+    const bilde = prosjekt.bilder[i];
+    if (bilde.grupp) {
+      const gruppId = bilde.grupp;
+      const gruppBilder = [];
+      while (i < prosjekt.bilder.length && prosjekt.bilder[i].grupp === gruppId) {
+        gruppBilder.push(prosjekt.bilder[i]);
+        i += 1;
+      }
+      sektion.append(skapaBildRad(gruppBilder));
+      continue;
+    }
     sektion.append(skapaBild(bilde));
+    i += 1;
   }
   return sektion;
 }
@@ -155,7 +171,7 @@ function byggGalleri(mal) {
 function byggIndex(mal) {
   const ordning = verkIndexOrdning(prosjekter.length);
   mal.replaceChildren(
-    ...ordning.map((i) => skapaIndexLank(prosjekter[i], i === 0))
+    ...ordning.map((i) => skapaIndexLank(prosjekter[i], false))
   );
 }
 
