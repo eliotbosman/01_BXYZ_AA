@@ -7,8 +7,10 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--verk-lank-storlek);
+    font-weight: 400;
+    line-height: var(--verk-lank-rad-hojd);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     text-decoration: none;
@@ -44,9 +46,8 @@
 
   @media (max-width: 768px) {
     .sidfot-lank {
-      font: 400 var(--mobil-krom-typ-storlek, var(--verk-lank-storlek)) /
-        var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd))
-        var(--font-display--family);
+      font-size: var(--mobil-krom-typ-storlek, var(--verk-lank-storlek));
+      line-height: var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd));
     }
 
     .sidfot-lank--info {

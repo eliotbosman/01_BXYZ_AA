@@ -15,9 +15,10 @@
     padding: 0;
     border: none;
     background: transparent;
-    font: 400 var(--mobil-krom-typ-storlek, var(--verk-lank-storlek)) /
-      var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd))
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--mobil-krom-typ-storlek, var(--verk-lank-storlek));
+    font-weight: 400;
+    line-height: var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd));
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     color: var(--color-foreground);
@@ -37,9 +38,10 @@
     padding: 0;
     border: none;
     background: transparent;
-    font: 400 var(--mobil-krom-typ-storlek, var(--verk-lank-storlek)) /
-      var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd))
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--mobil-krom-typ-storlek, var(--verk-lank-storlek));
+    font-weight: 400;
+    line-height: var(--mobil-krom-typ-rad-hojd, var(--verk-lank-rad-hojd));
     letter-spacing: var(--tracking-wide);
     text-align: inherit;
     color: var(--color-foreground);
@@ -90,8 +92,10 @@
       padding-block: 0;
       padding-inline-start: 0;
       padding-inline-end: var(--grid-cell-gutter);
-      font: 400 var(--mobil-krom-typ-storlek) / var(--mobil-krom-typ-rad-hojd)
-        var(--font-display--family);
+      font-family: var(--font-display--family);
+      font-size: var(--mobil-krom-typ-storlek);
+      font-weight: 400;
+      line-height: var(--mobil-krom-typ-rad-hojd);
       pointer-events: auto;
     }
 
@@ -123,8 +127,10 @@
       padding-inline-start: var(--grid-cell-gutter);
       padding-inline-end: 0;
       text-align: start;
-      font: 400 var(--mobil-krom-typ-storlek) / var(--mobil-krom-typ-rad-hojd)
-        var(--font-display--family);
+      font-family: var(--font-display--family);
+      font-size: var(--mobil-krom-typ-storlek);
+      font-weight: 400;
+      line-height: var(--mobil-krom-typ-rad-hojd);
     }
 
     .galleri-zon {

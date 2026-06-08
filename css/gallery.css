@@ -98,9 +98,10 @@
   .galleri-verk-inledning__rubrik,
   .galleri-verk-inledning__brod {
     margin: 0;
-    font: 400 var(--sidfot-panel-typ-storlek, calc(var(--rh-rad) * 0.42)) /
-      var(--sidfot-panel-typ-rad, calc(var(--rh-rad) * 0.5))
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--sidfot-panel-typ-storlek, calc(var(--rh-rad) * 0.42));
+    font-weight: 400;
+    line-height: var(--sidfot-panel-typ-rad, calc(var(--rh-rad) * 0.5));
     letter-spacing: var(--tracking-wide);
     color: var(--color-foreground);
   }

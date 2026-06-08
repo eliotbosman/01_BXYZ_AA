@@ -12,3 +12,15 @@
     --font-display--family: "Mrs Eaves Lining OT", Georgia, "Times New Roman", serif;
   }
 }
+
+@layer layout {
+  :is(
+    button.sidfot-lank,
+    button.mobil-index-knapp,
+    button.mobil-index__val,
+    button.verk-index__rubrik
+  ) {
+    font-family: var(--font-display--family);
+    font-weight: 400;
+  }
+}

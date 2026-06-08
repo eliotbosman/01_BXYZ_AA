@@ -62,8 +62,10 @@
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
-    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--verk-lank-storlek);
+    font-weight: 400;
+    line-height: var(--verk-lank-rad-hojd);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     text-align: end;
@@ -94,8 +96,10 @@
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
-    font: 400 var(--verk-lank-storlek) / var(--verk-lank-rad-hojd)
-      var(--font-display--family);
+    font-family: var(--font-display--family);
+    font-size: var(--verk-lank-storlek);
+    font-weight: 400;
+    line-height: var(--verk-lank-rad-hojd);
     letter-spacing: var(--tracking-wide);
     text-align: end;
     text-decoration: none;

@@ -26,7 +26,13 @@
     max-width: 100%;
   }
 
-  input, button, textarea, select { font: inherit; color: inherit; }
+  input, button, textarea, select {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    line-height: inherit;
+  }
 
   p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
