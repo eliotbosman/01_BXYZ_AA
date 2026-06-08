@@ -25,6 +25,16 @@
     display: none;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .sidfot-panel,
+    .verk-index__lankar,
+    .galleri-zon,
+    .mobil-index__kol-bakgrund,
+    .mobil-index__val {
+      transition: none;
+    }
+  }
+
   .sidfot-panel {
     z-index: 6;
     min-height: 0;
@@ -41,13 +51,8 @@
     padding-block-end: var(--sidfot-panel-mellanrum);
   }
 
-  .sidfot-panel--info .sidfot-panel__inne,
-  .sidfot-panel--kontakt .sidfot-panel__inne {
+  .sidfot-panel--info .sidfot-panel__inne {
     padding-inline: 0;
-  }
-
-  .sidfot-panel--kontakt .sidfot-panel__inne {
-    text-align: end;
   }
 
   .sidfot-panel__stycke {
@@ -114,8 +119,7 @@
     text-underline-offset: 0.2em;
   }
 
-  .sidfot-lank--info,
-  .sidfot-lank--kontakt {
+  .sidfot-lank--info {
     z-index: 8;
     align-self: center;
   }
@@ -125,8 +129,8 @@
     text-underline-offset: 0.2em;
   }
 
-  .sidfot-panel--info,
-  .sidfot-panel--kontakt {
+  .sidfot-panel--info {
+    grid-column: 1 / 2;
     grid-row: 1 / var(--sidfot-panel-link-rad-linje);
     align-self: end;
     justify-self: stretch;
@@ -134,25 +138,12 @@
     max-height: var(--sidfot-panel-hojd-over-link);
   }
 
-  .sidfot-panel--info {
-    grid-column: 1 / 2;
-  }
-
-  .sidfot-panel--kontakt {
-    grid-column: 6 / 7;
-  }
-
   @media (max-width: 768px) {
     .sidfot-panel--info {
       grid-column: 1 / 2;
     }
 
-    .sidfot-panel--kontakt {
-      grid-column: 2 / 3;
-    }
-
-    .sidfot-lank--info,
-    .sidfot-lank--kontakt {
+    .sidfot-lank--info {
       align-self: center;
     }
   }

@@ -83,6 +83,10 @@
     display: none;
   }
 
+  .verk-index__lankar:not([hidden]) {
+    opacity: 1;
+  }
+
   .verk-lank {
     display: block;
     width: max-content;

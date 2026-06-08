@@ -1,3 +1,4 @@
+import { fadeIn, fadeOut } from "./innehall-fade.js";
 import { rensaAktivProsjekt, synkaGalleriZon } from "./mobil-index.js";
 
 const desktop = window.matchMedia("(min-width: 769px)");
@@ -28,7 +29,7 @@ function sattVerkIndexOppnad(oppnad) {
     nav.dataset.tillstand = "oppnad";
     knapp.dataset.tillstand = "oppnad";
     knapp.setAttribute("aria-expanded", "true");
-    lankar.hidden = false;
+    fadeIn(lankar);
     synkaGalleriZon();
     return;
   }
@@ -36,9 +37,10 @@ function sattVerkIndexOppnad(oppnad) {
   nav.dataset.tillstand = "stangd";
   knapp.dataset.tillstand = "";
   knapp.setAttribute("aria-expanded", "false");
-  lankar.hidden = true;
-  rensaAktivProsjekt();
-  synkaGalleriZon();
+  fadeOut(lankar).then(() => {
+    rensaAktivProsjekt();
+    synkaGalleriZon();
+  });
 }
 
 function vaxlaVerkIndex(_mal, handelse) {

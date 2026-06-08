@@ -173,15 +173,6 @@
       padding-inline-end: 0;
     }
 
-    .sidfot-lank--kontakt {
-      grid-column: 2 / 3;
-      grid-row: 24 / 25;
-      align-self: center;
-      justify-self: end;
-      padding-inline-start: 0;
-      padding-inline-end: var(--grid-cell-gutter);
-    }
-
     .galleri-zon {
       grid-column: 1 / -1;
     }

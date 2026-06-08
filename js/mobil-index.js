@@ -1,4 +1,5 @@
 
+import { fadeIn, fadeInGrupp, fadeOut, fadeOutGrupp } from "./innehall-fade.js";
 import { prosjekter } from "./prosjekter.js";
 
 const mobil = window.matchMedia("(max-width: 768px)");
@@ -50,12 +51,25 @@ export function rensaAktivProsjekt() {
   markeraIndexVal("");
 }
 
+let galleriSynlig = false;
+
+function hamtaMobilIndexInnehall() {
+  const nav = hamtaNav();
+  if (!nav) return [];
+  const bakgrund = nav.querySelector(".mobil-index__kol-bakgrund");
+  const val = [...nav.querySelectorAll(".mobil-index__val")];
+  return [bakgrund, ...val].filter(Boolean);
+}
+
 export function synkaGalleriZon() {
   const zon = hamtaGalleriZon();
   if (!zon) return;
   const aktivId = document.body.dataset.aktivProsjekt || "";
   const synlig = arIndexOppnad() || !!aktivId;
-  zon.hidden = !synlig;
+  if (synlig === galleriSynlig) return;
+  galleriSynlig = synlig;
+  if (synlig) fadeIn(zon);
+  else fadeOut(zon);
 }
 
 function synkaProsjektSynlighet(aktivId) {
@@ -101,16 +115,21 @@ function sattIndexOppnad(oppnad) {
   const lista = hamtaLista();
   if (!nav || !knapp || !lista) return;
 
+  const innehall = hamtaMobilIndexInnehall();
+
   if (oppnad) {
     nav.dataset.tillstand = "oppnad";
     knapp.setAttribute("aria-expanded", "true");
     lista.removeAttribute("hidden");
+    fadeInGrupp(innehall);
     return;
   }
 
-  nav.removeAttribute("data-tillstand");
-  knapp.setAttribute("aria-expanded", "false");
-  lista.setAttribute("hidden", "");
+  fadeOutGrupp(innehall).then(() => {
+    nav.removeAttribute("data-tillstand");
+    knapp.setAttribute("aria-expanded", "false");
+    lista.setAttribute("hidden", "");
+  });
 }
 
 function stangIndex(opts = {}) {
