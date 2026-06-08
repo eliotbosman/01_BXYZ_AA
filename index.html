@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/sidfot-panel.css" />
   <link rel="stylesheet" href="css/bild-modal.css" />
+  <link rel="stylesheet" href="css/mobil-overlay.css" />
   <link rel="stylesheet" href="css/mobil-index.css" />
   <link rel="stylesheet" href="css/grid-ref-dold.css" />
 </head>
@@ -32,17 +33,25 @@
         Anja Aurand
       </button>
       <nav class="mobil-index" aria-label="Project index" hidden>
-        <span class="mobil-index__kol-bakgrund" aria-hidden="true"></span>
         <button
           type="button"
           class="mobil-index-knapp"
           data-atgard="mobil-index/vaxla"
           aria-expanded="false"
-          aria-controls="mobil-index-lista"
+          aria-controls="mobil-index-overlay"
         >
           Index
         </button>
-        <ul id="mobil-index-lista" class="mobil-index__lista" role="list" hidden></ul>
+        <div
+          id="mobil-index-overlay"
+          class="mobil-overlay mobil-overlay--index mobil-overlay--hoger"
+          hidden
+          data-tillstand="stangd"
+        >
+          <div class="mobil-overlay__inne">
+            <ul id="mobil-index-lista" class="mobil-index__lista" role="list"></ul>
+          </div>
+        </div>
       </nav>
       <div class="galleri-zon" hidden>
         <div class="galleri-flode scroll-dold" aria-label="Image gallery"></div>
@@ -64,7 +73,7 @@
       </nav>
       <section
         id="sidfot-info"
-        class="sidfot-panel sidfot-panel--info"
+        class="sidfot-panel sidfot-panel--info mobil-overlay--vanster"
         hidden
         data-tillstand="stangd"
         aria-label="Info"

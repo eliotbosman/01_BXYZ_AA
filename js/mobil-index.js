@@ -1,5 +1,5 @@
 
-import { fadeIn, fadeInGrupp, fadeOut, fadeOutGrupp } from "./innehall-fade.js";
+import { fadeIn, fadeOut } from "./innehall-fade.js";
 import { prosjekter } from "./prosjekter.js";
 
 const mobil = window.matchMedia("(max-width: 768px)");
@@ -16,8 +16,8 @@ function hamtaKnapp() {
   return document.querySelector(".mobil-index-knapp");
 }
 
-function hamtaLista() {
-  return document.querySelector(".mobil-index__lista");
+function hamtaOverlay() {
+  return document.querySelector("#mobil-index-overlay");
 }
 
 function hamtaFlode() {
@@ -52,14 +52,6 @@ export function rensaAktivProsjekt() {
 }
 
 let galleriSynlig = false;
-
-function hamtaMobilIndexInnehall() {
-  const nav = hamtaNav();
-  if (!nav) return [];
-  const bakgrund = nav.querySelector(".mobil-index__kol-bakgrund");
-  const val = [...nav.querySelectorAll(".mobil-index__val")];
-  return [bakgrund, ...val].filter(Boolean);
-}
 
 export function synkaGalleriZon() {
   const zon = hamtaGalleriZon();
@@ -112,28 +104,26 @@ export function valjMobilProsjekt(id) {
 function sattIndexOppnad(oppnad) {
   const nav = hamtaNav();
   const knapp = hamtaKnapp();
-  const lista = hamtaLista();
-  if (!nav || !knapp || !lista) return;
-
-  const innehall = hamtaMobilIndexInnehall();
+  const overlay = hamtaOverlay();
+  if (!nav || !knapp || !overlay) return;
 
   if (oppnad) {
     nav.dataset.tillstand = "oppnad";
     knapp.setAttribute("aria-expanded", "true");
-    lista.removeAttribute("hidden");
-    fadeInGrupp(innehall);
+    overlay.dataset.tillstand = "oppnad";
+    fadeIn(overlay);
     return;
   }
 
-  fadeOutGrupp(innehall).then(() => {
-    nav.removeAttribute("data-tillstand");
-    knapp.setAttribute("aria-expanded", "false");
-    lista.setAttribute("hidden", "");
-  });
+  nav.removeAttribute("data-tillstand");
+  knapp.setAttribute("aria-expanded", "false");
+  overlay.dataset.tillstand = "stangd";
+  fadeOut(overlay);
 }
 
 function stangIndex(opts = {}) {
   const { behallProsjekt = false } = opts;
+  if (!arMobilIndexOppnad()) return;
   sattIndexOppnad(false);
   if (!behallProsjekt) {
     rensaAktivProsjekt();
@@ -148,6 +138,7 @@ function vaxlaIndex(_mal, handelse) {
   if (!nav) return;
   const oppnas = nav.dataset.tillstand !== "oppnad";
   if (oppnas) {
+    document.dispatchEvent(new CustomEvent("sidfot-info/stang"));
     sattIndexOppnad(true);
     synkaGalleriZon();
     return;
@@ -167,7 +158,7 @@ function valjFranIndex(_mal, handelse) {
 function hanteraUtanforIndex(handelse) {
   const nav = hamtaNav();
   if (!arMobil() || !nav || nav.dataset.tillstand !== "oppnad") return;
-  if (handelse.target.closest(".mobil-index")) return;
+  if (handelse.target.closest(".mobil-index, .mobil-index-knapp")) return;
   stangIndex();
 }
 
@@ -188,34 +179,21 @@ function synkaMobilLayout() {
   synkaProsjektSynlighet(aktivId);
 }
 
-function synkaMobilIndexMatt() {
-  const rot = document.querySelector('[data-grid="001"]');
-  if (!rot) return;
-  const antal = prosjekter.length;
-  rot.style.setProperty("--mobil-index-antal", String(antal));
-  rot.style.setProperty("--mobil-index-rad-start", "2");
-  rot.style.setProperty("--mobil-index-rad-slut", String(antal + 2));
-}
-
 export function byggMobilIndex(lista) {
   if (!lista) return;
   lista.replaceChildren(
-    ...prosjekter.map((prosjekt, i) => {
+    ...prosjekter.map((prosjekt) => {
       const li = document.createElement("li");
       const knapp = document.createElement("button");
-      const rad = i + 2;
       knapp.type = "button";
       knapp.className = "mobil-index__val";
       knapp.dataset.atgard = "mobil-index/valj";
       knapp.dataset.prosjekt = prosjekt.id;
-      knapp.style.setProperty("--mobil-index-rad", String(rad));
       knapp.textContent = prosjekt.titel;
       li.append(knapp);
       return li;
     })
   );
-  lista.setAttribute("hidden", "");
-  synkaMobilIndexMatt();
 }
 
 export const mobilIndexAtgarder = {
@@ -225,6 +203,11 @@ export const mobilIndexAtgarder = {
 
 export function kopplaMobilIndex() {
   document.addEventListener("pointerup", hanteraUtanforIndex);
+  document.addEventListener("mobil-index/stang", (handelse) => {
+    stangIndex({
+      behallProsjekt: handelse.detail?.behallProsjekt ?? false,
+    });
+  });
   mobil.addEventListener("change", synkaMobilLayout);
   synkaMobilLayout();
   synkaGalleriZon();

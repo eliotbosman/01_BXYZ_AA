@@ -1,0 +1,84 @@
+
+@layer tokens {
+  [data-grid="001"] {
+    --mobil-overlay-rad-start: 2;
+    --mobil-overlay-z: 6;
+    --mobil-krom-z: 8;
+    --mobil-overlay-typ-storlek: var(--sidfot-panel-typ-storlek);
+    --mobil-overlay-typ-rad: var(--sidfot-panel-typ-rad);
+    --mobil-overlay-mellanrum: var(--sidfot-panel-mellanrum);
+    --mobil-overlay-lank-mellanrum: calc(
+      var(--grid-row-gap) + var(--rh-rad) * 0.5
+    );
+  }
+}
+
+@layer layout {
+  @media (min-width: 769px) {
+    .mobil-overlay--index {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobil-overlay[hidden] {
+      display: none;
+    }
+
+    .mobil-overlay {
+      grid-column: 1 / -1;
+      grid-row: var(--mobil-overlay-rad-start) / -1;
+      z-index: var(--mobil-overlay-z);
+      box-sizing: border-box;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background-color: #fff;
+      pointer-events: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobil-overlay__inne {
+      box-sizing: border-box;
+      padding-block: var(--grid-margin);
+      padding-block-end: var(--mobil-overlay-mellanrum);
+    }
+
+    .mobil-overlay--vanster .mobil-overlay__inne,
+    .sidfot-panel--info .sidfot-panel__inne {
+      padding-inline-start: var(--grid-cell-gutter);
+      padding-inline-end: var(--grid-cell-gutter);
+      text-align: start;
+    }
+
+    .mobil-overlay--hoger .mobil-overlay__inne {
+      padding-inline-start: var(--grid-cell-gutter);
+      padding-inline-end: var(--grid-cell-gutter);
+      text-align: end;
+    }
+
+    .sidfot-panel--info {
+      grid-column: 1 / -1;
+      grid-row: var(--mobil-overlay-rad-start) / -1;
+      align-self: start;
+      justify-self: stretch;
+      width: 100%;
+      max-height: none;
+      z-index: var(--mobil-overlay-z);
+    }
+
+    .sidfot-panel--info .sidfot-panel__inne {
+      padding-block-start: var(--grid-margin);
+      padding-inline-start: var(--grid-cell-gutter);
+      padding-inline-end: var(--grid-cell-gutter);
+      text-align: start;
+    }
+
+    .sidfot-lank--namn,
+    .mobil-index-knapp {
+      z-index: var(--mobil-krom-z);
+      position: relative;
+    }
+  }
+}

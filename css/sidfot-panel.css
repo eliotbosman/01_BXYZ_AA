@@ -29,8 +29,7 @@
     .sidfot-panel,
     .verk-index__lankar,
     .galleri-zon,
-    .mobil-index__kol-bakgrund,
-    .mobil-index__val {
+    .mobil-overlay {
       transition: none;
     }
   }
@@ -139,10 +138,6 @@
   }
 
   @media (max-width: 768px) {
-    .sidfot-panel--info {
-      grid-column: 1 / 2;
-    }
-
     .sidfot-lank--info {
       align-self: center;
     }

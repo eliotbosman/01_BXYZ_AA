@@ -47,10 +47,19 @@ function oppna(nyckel) {
   fadeIn(el);
 }
 
+function arMobil() {
+  return window.matchMedia("(max-width: 768px)").matches;
+}
+
 function vaxla(nyckel) {
   if (arOppnad(nyckel)) {
     stang(nyckel);
     return;
+  }
+  if (arMobil()) {
+    document.dispatchEvent(
+      new CustomEvent("mobil-index/stang", { detail: { behallProsjekt: true } })
+    );
   }
   oppna(nyckel);
 }
@@ -83,4 +92,7 @@ export const sidfotAtgarder = {
 export function kopplaSidfotPanel() {
   document.addEventListener("keydown", vidTangent);
   document.addEventListener("click", vidKlickUtanfor);
+  document.addEventListener("sidfot-info/stang", () => {
+    if (arOppnad("info")) stang("info");
+  });
 }
