@@ -219,4 +219,6 @@ foreach ( $defaults as $key => $value ) {
     update_option( $key, $value );
 }
 
+update_option( 'blogname', 'Anja Aurand' );
+
 WP_CLI::success( 'Seed data complete.' );

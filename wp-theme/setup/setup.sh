@@ -20,7 +20,7 @@ echo "==> Installing WordPress..."
 wp core install \
   --path="$WP" \
   --url="http://localhost:8080" \
-  --title="bxyz-anjaaurand" \
+  --title="Anja Aurand" \
   --admin_user="admin" \
   --admin_password="admin1234" \
   --admin_email="admin@bxyz.local" \
@@ -42,7 +42,7 @@ wp rewrite structure "/%postname%/" --path="$WP" --allow-root
 wp rewrite flush --path="$WP" --allow-root
 
 echo "==> Configuring WordPress options..."
-wp option update blogname "bxyz-anjaaurand" --path="$WP" --allow-root
+wp option update blogname "Anja Aurand" --path="$WP" --allow-root
 wp option update blogdescription "" --path="$WP" --allow-root
 wp option update timezone_string "Europe/Amsterdam" --path="$WP" --allow-root
 
